@@ -1,4 +1,4 @@
-package com.freeraven.tutorialbuilder;
+package com.freeraven.tutorialbuilder.tutorial;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,9 +16,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.widget.TextView;
+import com.freeraven.tutorialbuilder.Injector;
+import com.freeraven.tutorialbuilder.dataprovider.PageListProvider;
+import com.freeraven.tutorialbuilder.R;
+import com.freeraven.tutorialbuilder.VerticalLinearPageViewBuilder;
+import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
+import com.freeraven.tutorialbuilder.pagemodel.PageModel;
 
-public class MainActivity extends AppCompatActivity {
+public class TutorialActivity extends AppCompatActivity {
 
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     private ViewPager mViewPager;
+    private PageListModel pageListModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,13 +50,16 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
+
+        setupPageListModel();
+
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-
+        // todo remove action button
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,10 +68,18 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
     }
 
+    private void setupPageListModel() {
+        PageListProvider provider = Injector.getPageListProvider();
+        pageListModel = provider.getPageListModel();
+    }
 
+    public PageModel getPageModel(int pageIndex){
+        return pageListModel.get(pageIndex);
+    }
+
+    // TODO: 9/13/16 remove menu options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -102,10 +119,10 @@ public class MainActivity extends AppCompatActivity {
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public static PlaceholderFragment newInstance(int sectionNumber) {
+        public static PlaceholderFragment newInstance(int index) {
             PlaceholderFragment fragment = new PlaceholderFragment();
             Bundle args = new Bundle();
-            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            args.putInt(ARG_SECTION_NUMBER, index);
             fragment.setArguments(args);
             return fragment;
         }
@@ -113,10 +130,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-            TextView textView = (TextView) rootView.findViewById(R.id.section_label);
-            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
-            return rootView;
+            TutorialActivity activity = (TutorialActivity) getActivity();
+            int pageIndex = getArguments().getInt(ARG_SECTION_NUMBER);
+            PageModel pageModel = activity.getPageModel(pageIndex);
+            VerticalLinearPageViewBuilder verticalLinearPageViewBuilder = new VerticalLinearPageViewBuilder();
+            return verticalLinearPageViewBuilder.buildPage(pageModel, container, inflater);
         }
     }
 
@@ -131,10 +149,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public Fragment getItem(int index) {
             // getItem is called to instantiate the fragment for the given page.
             // Return a PlaceholderFragment (defined as a static inner class below).
-            return PlaceholderFragment.newInstance(position + 1);
+            return PlaceholderFragment.newInstance(index);
         }
 
         @Override
@@ -144,8 +162,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
+        public CharSequence getPageTitle(int pageIndex) {
+            switch (pageIndex) {
                 case 0:
                     return "SECTION 1";
                 case 1:

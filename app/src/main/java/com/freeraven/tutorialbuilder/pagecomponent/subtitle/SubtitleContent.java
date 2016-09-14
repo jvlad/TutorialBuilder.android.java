@@ -1,12 +1,12 @@
-package com.freeraven.tutorialbuilder.pagecomponent.title;
+package com.freeraven.tutorialbuilder.pagecomponent.subtitle;
 
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
-public class TitleContent{
+public class SubtitleContent{
     private String value;
 
-    String getValue() {
+    public String getValue() {
         return value;
     }
 

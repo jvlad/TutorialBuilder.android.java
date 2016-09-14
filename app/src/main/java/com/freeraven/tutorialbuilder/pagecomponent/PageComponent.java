@@ -1,14 +1,14 @@
 package com.freeraven.tutorialbuilder.pagecomponent;
 
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
+
+import com.freeraven.tutorialbuilder.pagecomponent.title.TitleContent;
 
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
 public abstract class PageComponent {
-    protected abstract ComponentName getName();
-    protected abstract void setName(ComponentName name);
-    protected abstract ComponentContent getContent();
-    protected abstract void setContent(ComponentContent content);
-    protected abstract View getView();
+    public abstract View render(LayoutInflater inflater, LinearLayout rootView);
 }
