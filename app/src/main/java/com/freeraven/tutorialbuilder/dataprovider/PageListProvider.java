@@ -1,17 +1,19 @@
 package com.freeraven.tutorialbuilder.dataprovider;
 
+import android.media.Image;
 import android.support.annotation.NonNull;
 
+import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.TextComponent.TextComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.TextComponent.TextContent;
+import com.freeraven.tutorialbuilder.pagecomponent.image.ImageComponent;
+import com.freeraven.tutorialbuilder.pagecomponent.image.ImageContent;
 import com.freeraven.tutorialbuilder.pagecomponent.subtitle.SubtitleComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.subtitle.SubtitleContent;
 import com.freeraven.tutorialbuilder.pagecomponent.title.TitleComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.title.TitleContent;
 import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
 import com.freeraven.tutorialbuilder.pagemodel.PageModel;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
@@ -36,13 +38,30 @@ public class PageListProvider {
 
     public PageListModel getPageListModel() {
         PageListModel pageListModel = new PageListModel();
-        for (int i = 0; i < 3; i++) {
-            pageListModel.add(createPageModel());
+        for (int i = 0; i < 2; i++) {
+            pageListModel.add(createTextPageModel());
         }
+        pageListModel.add(createImagePageModel());
         return pageListModel;
     }
 
-    private PageModel createPageModel() {
+    private PageModel createImagePageModel() {
+        PageModel page = new PageModel();
+        page.add(stubTitle())
+            .add(stubSubtitle())
+            .add(stubImage());
+        return page;
+    }
+
+    private PageComponent stubImage() {
+        ImageContent body = new ImageContent();
+        body.setUrl("http://goo.gl/gEgYUd");
+        ImageComponent component = new ImageComponent();
+        component.setContent(body);
+        return component;
+    }
+
+    private PageModel createTextPageModel() {
         PageModel page = new PageModel();
         page.add(stubTitle())
             .add(stubSubtitle())

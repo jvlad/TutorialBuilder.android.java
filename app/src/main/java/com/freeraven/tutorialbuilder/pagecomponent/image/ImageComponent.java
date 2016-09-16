@@ -22,6 +22,7 @@ public class ImageComponent extends PageComponent {
     @Override
     public View render(LayoutInflater inflater, LinearLayout rootView) {
         ImageView rendered = (ImageView) inflater.inflate(R.layout.image_component, rootView, false);
+//        ImageView image = (ImageView) rendered.findViewById(R.id.image);
         return rendered;
     }
 }
