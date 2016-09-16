@@ -1,11 +1,11 @@
-package com.freeraven.tutorialbuilder.dataprovider;
+package com.freeraven.tutorialbuilder.dataprovider.stub;
 
-import android.media.Image;
 import android.support.annotation.NonNull;
 
+import com.freeraven.tutorialbuilder.dataprovider.PageListModelProvider;
 import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
-import com.freeraven.tutorialbuilder.pagecomponent.TextComponent.TextComponent;
-import com.freeraven.tutorialbuilder.pagecomponent.TextComponent.TextContent;
+import com.freeraven.tutorialbuilder.pagecomponent.text.TextComponent;
+import com.freeraven.tutorialbuilder.pagecomponent.text.TextContent;
 import com.freeraven.tutorialbuilder.pagecomponent.image.ImageComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.image.ImageContent;
 import com.freeraven.tutorialbuilder.pagecomponent.subtitle.SubtitleComponent;
@@ -18,24 +18,25 @@ import com.freeraven.tutorialbuilder.pagemodel.PageModel;
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
-public class PageListProvider {
-    private int pageCounter = 0;
-    private static PageListProvider instance;
+public class StubPageListModelProvider implements PageListModelProvider {
+    private int componentCounter = 0;
+    private static StubPageListModelProvider instance;
 
-    private PageListProvider() {
+    private StubPageListModelProvider() {
     }
 
-    public static PageListProvider getInstance() {
+    public static StubPageListModelProvider getInstance() {
         if (instance == null) {
-            synchronized (PageListProvider.class) {
+            synchronized (StubPageListModelProvider.class) {
                 if (instance == null) {
-                    instance = new PageListProvider();
+                    instance = new StubPageListModelProvider();
                 }
             }
         }
         return instance;
     }
 
+    @Override
     public PageListModel getPageListModel() {
         PageListModel pageListModel = new PageListModel();
         for (int i = 0; i < 2; i++) {
@@ -43,6 +44,15 @@ public class PageListProvider {
         }
         pageListModel.add(createImagePageModel());
         return pageListModel;
+    }
+
+    @Override
+    public void reset() {
+        componentCounter = 0;
+    }
+
+    @Override
+    public void reparseLastRetrievedRowData() {
     }
 
     private PageModel createImagePageModel() {
@@ -73,7 +83,7 @@ public class PageListProvider {
     @NonNull
     private TitleComponent stubTitle() {
         TitleContent body = new TitleContent();
-        body.setValue("Page With Number " + ++pageCounter);
+        body.setValue("Page With Number " + ++componentCounter);
         TitleComponent component = new TitleComponent();
         component.setContent(body);
         return component;
@@ -82,7 +92,7 @@ public class PageListProvider {
     @NonNull
     private SubtitleComponent stubSubtitle() {
         SubtitleContent titleContent = new SubtitleContent();
-        titleContent.setValue("Subtitle Number " + ++pageCounter);
+        titleContent.setValue("Subtitle Number " + ++componentCounter);
         SubtitleComponent component = new SubtitleComponent();
         component.setContent(titleContent);
         return component;
@@ -91,7 +101,7 @@ public class PageListProvider {
     @NonNull
     private TextComponent stubText() {
         TextContent body = new TextContent();
-        body.setValue(++pageCounter
+        body.setValue(++componentCounter
                       + " Instantiates a layout XML file into its corresponding View objects. It is never used directly. Instead, use getLayoutInflater() or getSystemService(Class) to retrieve a standard LayoutInflater instance that is already hooked up to the current context and correctly configured for the device you are running on. For example:\n"
                       + "\n"
                       + "LayoutInflater inflater = (LayoutInflater)context.getSystemService\n"

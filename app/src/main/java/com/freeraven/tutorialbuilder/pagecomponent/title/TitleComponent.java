@@ -18,6 +18,12 @@ public class TitleComponent extends PageComponent {
         this.content = content;
     }
 
+    // We can abstract from Android-specific mechanism of getting the view.
+    // E. g. by introducing
+    // 1. our own View type,
+    // 2. renderMechanism type
+    // 3. ViewSkinURI type
+    // But because of I am building Android app, it seems like overhead.
     @Override
     public View render(LayoutInflater inflater, LinearLayout rootView) {
         TextView rendered = (TextView) inflater.inflate(R.layout.title_component, rootView, false);

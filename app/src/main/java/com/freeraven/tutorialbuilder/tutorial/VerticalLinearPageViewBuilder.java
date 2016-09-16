@@ -1,10 +1,11 @@
-package com.freeraven.tutorialbuilder;
+package com.freeraven.tutorialbuilder.tutorial;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.freeraven.tutorialbuilder.R;
 import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 import com.freeraven.tutorialbuilder.pagemodel.PageModel;
 

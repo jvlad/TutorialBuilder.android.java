@@ -1,4 +1,4 @@
-package com.freeraven.tutorialbuilder.pagecomponent.TextComponent;
+package com.freeraven.tutorialbuilder.pagecomponent.text;
 
 import android.view.LayoutInflater;
 import android.view.View;

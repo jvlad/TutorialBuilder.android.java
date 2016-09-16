@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.freeraven.tutorialbuilder.R;
 
 /**
@@ -17,5 +18,6 @@ public class ImageLoadingSampleActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.glide_sample_activity);
         ImageView rendered = (ImageView) findViewById(R.id.image);
+        Glide.with(this).load("http://goo.gl/gEgYUd").into(rendered);
     }
 }

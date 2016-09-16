@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.freeraven.tutorialbuilder.R;
 import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 
@@ -23,6 +24,7 @@ public class ImageComponent extends PageComponent {
     public View render(LayoutInflater inflater, LinearLayout rootView) {
         ImageView rendered = (ImageView) inflater.inflate(R.layout.image_component, rootView, false);
 //        ImageView image = (ImageView) rendered.findViewById(R.id.image);
+        Glide.with(inflater.getContext()).load(content.getUrl()).into(rendered);
         return rendered;
     }
 }

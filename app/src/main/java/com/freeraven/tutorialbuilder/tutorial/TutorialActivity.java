@@ -17,9 +17,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.freeraven.tutorialbuilder.Injector;
-import com.freeraven.tutorialbuilder.dataprovider.PageListProvider;
 import com.freeraven.tutorialbuilder.R;
-import com.freeraven.tutorialbuilder.VerticalLinearPageViewBuilder;
+import com.freeraven.tutorialbuilder.dataprovider.PageListModelProvider;
 import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
 import com.freeraven.tutorialbuilder.pagemodel.PageModel;
 
@@ -48,8 +47,6 @@ public class TutorialActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
 
         setupPageListModel();
 
@@ -64,8 +61,6 @@ public class TutorialActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
                 Intent intent = new Intent(TutorialActivity.this, ImageLoadingSampleActivity.class);
                 startActivity(intent);
             }
@@ -73,7 +68,7 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     private void setupPageListModel() {
-        PageListProvider provider = Injector.getPageListProvider();
+        PageListModelProvider provider = Injector.getPageListProvider();
         pageListModel = provider.getPageListModel();
     }
 
@@ -81,7 +76,6 @@ public class TutorialActivity extends AppCompatActivity {
         return pageListModel.get(pageIndex);
     }
 
-    // TODO: 9/13/16 remove menu options
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
