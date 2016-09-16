@@ -1,7 +1,7 @@
 package com.freeraven.tutorialbuilder.tutorial;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
@@ -64,8 +64,10 @@ public class TutorialActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                Intent intent = new Intent(TutorialActivity.this, ImageLoadingSampleActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -75,7 +77,7 @@ public class TutorialActivity extends AppCompatActivity {
         pageListModel = provider.getPageListModel();
     }
 
-    public PageModel getPageModel(int pageIndex){
+    public PageModel getPageModel(int pageIndex) {
         return pageListModel.get(pageIndex);
     }
 
@@ -157,21 +159,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            // Show 3 total pages.
             return 3;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int pageIndex) {
-            switch (pageIndex) {
-                case 0:
-                    return "SECTION 1";
-                case 1:
-                    return "SECTION 2";
-                case 2:
-                    return "SECTION 3";
-            }
-            return null;
         }
     }
 }
