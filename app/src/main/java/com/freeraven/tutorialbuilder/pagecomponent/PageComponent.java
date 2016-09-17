@@ -9,6 +9,6 @@ import com.freeraven.tutorialbuilder.pagecomponent.title.TitleContent;
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
-public abstract class PageComponent {
-    public abstract View render(LayoutInflater inflater, LinearLayout rootView);
+public interface PageComponent {
+    View render(LayoutInflater inflater, LinearLayout rootView);
 }

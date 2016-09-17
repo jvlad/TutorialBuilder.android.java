@@ -1,0 +1,21 @@
+{
+  "pages": [
+    //    {
+    //      "title": "",
+    //      "subtitle": "",
+    //      "content-type": "",
+    //      "content": ""
+    //    },
+    {
+      "title": "1. Android Application Class",
+      "subtitle": "Base class for maintaining global application state",
+      "content-type": "text",
+      "content": "This is base class for maintaining global application state. You can provide your own implementation by creating a subclass and specifying the fully-qualified name of this subclass as the \"android:name\" attribute in your AndroidManifest.xml's <application> tag. The Application class, or your subclass of the Application class, is instantiated before any other class when the process for your application/package is created. Note: There is normally no need to subclass Application. In most situations, static singletons can provide the same functionality in a more modular way. If your singleton needs a global context (for example to register broadcast receivers), include Context.getApplicationContext() as a Context argument when invoking your singleton's getInstance() method."
+    },
+    {
+      "title": "2. ActionBar",
+      "content-type": "image",
+      "content": "http://i.stack.imgur.com/WvjuY.png"
+    }
+  ]
+}

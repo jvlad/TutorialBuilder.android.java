@@ -1,10 +1,10 @@
-package com.freeraven.tutorialbuilder.dataprovider.retrieve.asset;
+package com.freeraven.tutorialbuilder.data.provider.retrieve.asset;
 
 import android.content.res.AssetManager;
 
-import com.freeraven.tutorialbuilder.dataprovider.RowData;
-import com.freeraven.tutorialbuilder.dataprovider.retrieve.RowDataRetrieve;
-import com.freeraven.tutorialbuilder.dataprovider.RowDataURI;
+import com.freeraven.tutorialbuilder.data.RowData;
+import com.freeraven.tutorialbuilder.data.provider.retrieve.PageListDataRetrieve;
+import com.freeraven.tutorialbuilder.data.RowDataURI;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,10 +12,10 @@ import java.io.InputStream;
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/16/16.
  */
-public class DataFromAsset implements RowDataRetrieve {
+public class PageListDataFromAsset implements PageListDataRetrieve {
     private final AssetManager assets;
 
-    public DataFromAsset(AssetManager assets) {
+    public PageListDataFromAsset(AssetManager assets) {
         this.assets = assets;
     }
 

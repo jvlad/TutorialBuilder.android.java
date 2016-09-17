@@ -1,5 +1,7 @@
 package com.freeraven.tutorialbuilder.pagecomponent.subtitle;
 
+import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
+
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */

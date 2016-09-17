@@ -16,9 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.freeraven.tutorialbuilder.Injector;
+import com.freeraven.tutorialbuilder.data.DataFormat;
+import com.freeraven.tutorialbuilder.data.DataSourceType;
+import com.freeraven.tutorialbuilder.data.RowDataURI;
+import com.freeraven.tutorialbuilder.data.provider.ProviderFactory;
 import com.freeraven.tutorialbuilder.R;
-import com.freeraven.tutorialbuilder.dataprovider.PageListModelProvider;
+import com.freeraven.tutorialbuilder.data.provider.PageListModelProvider;
 import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
 import com.freeraven.tutorialbuilder.pagemodel.PageModel;
 
@@ -50,7 +53,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         setupPageListModel();
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), pageListModel.size());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.container);
@@ -68,7 +71,9 @@ public class TutorialActivity extends AppCompatActivity {
     }
 
     private void setupPageListModel() {
-        PageListModelProvider provider = Injector.getPageListProvider();
+        RowDataURI dataURI = new RowDataURI();
+        dataURI.setDataURI("sep-17-2016.json");
+        PageListModelProvider provider = ProviderFactory.getPageListProvider(dataURI, DataSourceType.ASSETS, DataFormat.JSON, this);
         pageListModel = provider.getPageListModel();
     }
 
@@ -139,9 +144,11 @@ public class TutorialActivity extends AppCompatActivity {
      * one of the sections/tabs/pages.
      */
     public class SectionsPagerAdapter extends FragmentPagerAdapter {
+        private final int count;
 
-        public SectionsPagerAdapter(FragmentManager fm) {
+        public SectionsPagerAdapter(FragmentManager fm, int numberOfPages) {
             super(fm);
+            this.count = numberOfPages;
         }
 
         @Override
@@ -153,7 +160,7 @@ public class TutorialActivity extends AppCompatActivity {
 
         @Override
         public int getCount() {
-            return 3;
+            return count;
         }
     }
 }

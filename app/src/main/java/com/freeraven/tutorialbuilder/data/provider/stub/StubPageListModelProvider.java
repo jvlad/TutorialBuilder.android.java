@@ -1,8 +1,8 @@
-package com.freeraven.tutorialbuilder.dataprovider.stub;
+package com.freeraven.tutorialbuilder.data.provider.stub;
 
 import android.support.annotation.NonNull;
 
-import com.freeraven.tutorialbuilder.dataprovider.PageListModelProvider;
+import com.freeraven.tutorialbuilder.data.provider.PageListModelProvider;
 import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.text.TextComponent;
 import com.freeraven.tutorialbuilder.pagecomponent.text.TextContent;
@@ -52,7 +52,7 @@ public class StubPageListModelProvider implements PageListModelProvider {
     }
 
     @Override
-    public void reparseLastRetrievedRowData() {
+    public void convertLastRetrievedRowData() {
     }
 
     private PageModel createImagePageModel() {
@@ -65,7 +65,7 @@ public class StubPageListModelProvider implements PageListModelProvider {
 
     private PageComponent stubImage() {
         ImageContent body = new ImageContent();
-        body.setUrl("http://goo.gl/gEgYUd");
+        body.setValue("http://goo.gl/gEgYUd");
         ImageComponent component = new ImageComponent();
         component.setContent(body);
         return component;

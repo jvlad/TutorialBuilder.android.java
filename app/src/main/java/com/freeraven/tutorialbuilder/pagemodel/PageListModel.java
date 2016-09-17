@@ -16,4 +16,8 @@ public class PageListModel {
     public PageModel get(int index){
         return itemList.get(index);
     }
+
+    public int size() {
+        return itemList.size();
+    }
 }

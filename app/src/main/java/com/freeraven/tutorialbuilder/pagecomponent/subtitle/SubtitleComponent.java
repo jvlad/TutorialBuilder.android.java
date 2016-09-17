@@ -11,11 +11,19 @@ import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
-public class SubtitleComponent extends PageComponent {
+public class SubtitleComponent implements PageComponent {
     private SubtitleContent content;
 
     public void setContent(SubtitleContent content) {
         this.content = content;
+    }
+
+    public static PageComponent newInstance(String rowContentData) {
+        SubtitleContent titleContent = new SubtitleContent();
+        titleContent.setValue(rowContentData);
+        SubtitleComponent component = new SubtitleComponent();
+        component.setContent(titleContent);
+        return component;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.freeraven.tutorialbuilder.dataprovider;
+package com.freeraven.tutorialbuilder.data.provider;
 
 import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
 
@@ -8,5 +8,5 @@ import com.freeraven.tutorialbuilder.pagemodel.PageListModel;
 public interface PageListModelProvider {
     PageListModel getPageListModel();
     void reset();
-    void reparseLastRetrievedRowData();
+    void convertLastRetrievedRowData();
 }

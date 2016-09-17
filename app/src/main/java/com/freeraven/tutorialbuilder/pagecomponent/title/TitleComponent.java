@@ -11,11 +11,19 @@ import com.freeraven.tutorialbuilder.pagecomponent.PageComponent;
 /**
  * Created by Vlad Zamskoi (v.zamskoi@gmail.com) on 9/13/16.
  */
-public class TitleComponent extends PageComponent {
+public class TitleComponent implements PageComponent {
     private TitleContent content;
 
     public void setContent(TitleContent content) {
         this.content = content;
+    }
+
+    public static PageComponent newInstance(String rowContentData) {
+        TitleContent body = new TitleContent();
+        body.setValue(rowContentData);
+        TitleComponent component = new TitleComponent();
+        component.setContent(body);
+        return component;
     }
 
     // We can abstract from Android-specific mechanism of getting the view.
